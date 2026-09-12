@@ -1,0 +1,368 @@
+//The DOM tree allows JavaScript to access, modify, add, or remove HTML elements dynamically.
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Selection Methods</title>
+
+    <style>
+        .box {
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid black;
+        }
+
+        .highlight {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container" class="box">
+
+        <h1 id="title" class="heading">
+            DOM Selection Example
+        </h1>
+
+        <p class="text">
+            First paragraph
+        </p>
+
+        <p class="text">
+            Second paragraph
+        </p>
+
+        <button id="btn" data-user="shiv" data-role="student">
+            Click Me
+        </button>
+
+    </div>
+
+
+<script>
+
+
+// =====================================================
+// 1. SELECTING ELEMENT USING ID
+// =====================================================
+
+// getElementById() selects an element using its id attribute
+
+// HTML:
+// <h1 id="title">
+
+let title = document.getElementById("title");
+
+console.log(title);
+
+
+// Changing text using selected element
+title.textContent = "Changed using getElementById";
+
+
+
+
+// =====================================================
+// 2. SELECTING ELEMENT USING TAG NAME
+// =====================================================
+
+// getElementsByTagName() selects all elements
+// having the same HTML tag
+
+// Here we select all <p> elements
+
+let paragraphs = document.getElementsByTagName("p");
+
+
+console.log(paragraphs);
+
+
+// Since multiple elements are returned,
+// we access them using index
+
+paragraphs[0].textContent = "First paragraph changed";
+
+
+
+
+
+// =====================================================
+// 3. SELECTING ELEMENT USING CLASS NAME
+// =====================================================
+
+// getElementsByClassName()
+// selects all elements having a particular class
+
+
+// HTML:
+// <p class="text">
+
+let texts = document.getElementsByClassName("text");
+
+
+console.log(texts);
+
+
+// Changing second paragraph
+
+texts[1].textContent = "Second paragraph changed";
+
+
+
+
+
+// =====================================================
+// 4. USING querySelector()
+// =====================================================
+
+// querySelector() selects the FIRST matching element
+
+// CSS selector rules are used here
+
+
+// Selecting using id
+let heading = document.querySelector("#title");
+
+
+console.log(heading);
+
+
+
+// Selecting using class
+
+let para = document.querySelector(".text");
+
+
+console.log(para);
+
+
+// Only first .text element is returned
+
+
+
+
+
+// =====================================================
+// 5. USING querySelectorAll()
+// =====================================================
+
+
+// querySelectorAll()
+// selects ALL matching elements
+
+
+let allPara = document.querySelectorAll(".text");
+
+
+console.log(allPara);
+
+
+// Returns NodeList
+
+
+// Changing all paragraphs
+
+allPara.forEach(function(item){
+
+    item.style.color = "blue";
+
+});
+
+
+
+
+
+// =====================================================
+// 6. SELECTING PARENT ELEMENT
+// =====================================================
+
+
+// parentElement gives the parent of an element
+
+
+let parent = title.parentElement;
+
+
+console.log(parent);
+
+
+// Output:
+// <div id="container">
+
+
+
+
+
+// =====================================================
+// 7. SELECTING SIBLING ELEMENTS
+// =====================================================
+
+
+// Sibling means elements having same parent
+
+
+// HTML structure:
+
+/*
+
+<div>
+    <h1></h1>
+    <p></p>
+</div>
+
+
+h1 and p are siblings
+
+*/
+
+
+// Selecting next sibling of h1
+
+let next = title.nextElementSibling;
+
+
+console.log(next);
+
+
+// Output:
+// First <p>
+
+
+
+
+
+// Selecting previous sibling
+
+
+let previous = paragraphs[0].previousElementSibling;
+
+
+console.log(previous);
+
+
+// Output:
+// <h1>
+
+
+
+
+
+// =====================================================
+// 8. SELECTING CHILD ELEMENTS
+// =====================================================
+
+
+// children property gives all direct children
+
+
+let container = document.getElementById("container");
+
+
+let children = container.children;
+
+
+console.log(children);
+
+
+// Output:
+
+/*
+HTMLCollection
+
+[
+ h1,
+ p,
+ p,
+ button
+]
+
+*/
+
+
+
+// First child
+
+console.log(container.firstElementChild);
+
+
+// Output:
+// h1
+
+
+
+// Last child
+
+console.log(container.lastElementChild);
+
+
+// Output:
+// button
+
+
+
+
+
+// =====================================================
+// 9. SELECTING ELEMENT USING DATASET
+// =====================================================
+
+
+// HTML custom attributes:
+
+/*
+
+<button 
+data-user="shiv"
+data-role="student">
+
+*/
+
+
+let button = document.getElementById("btn");
+
+
+// dataset gives access to data attributes
+
+
+console.log(button.dataset.user);
+
+
+// Output:
+// shiv
+
+
+
+console.log(button.dataset.role);
+
+
+// Output:
+// student
+
+
+
+
+
+
+// =====================================================
+// BONUS: MODIFYING CSS USING DOM
+// =====================================================
+
+
+button.style.backgroundColor = "yellow";
+
+title.classList.add("highlight");
+
+
+// classList allows us to:
+// add()
+// remove()
+// toggle()
+
+
+
+</script>
+
+
+</body>
+</html>
