@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+
+<style>
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#eee;
+    font-family:Arial;
+}
+
+.calculator{
+    width:300px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+input{
+    width:100%;
+    height:50px;
+    font-size:25px;
+    text-align:right;
+    margin-bottom:15px;
+}
+
+button{
+    width:60px;
+    height:50px;
+    margin:5px;
+    font-size:20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.num{
+    background:#e8eef0;
+}
+
+.op{
+    background:#db6b95;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+<input id="display" readonly>
+
+<div>
+<button class="num" onclick="press('1')">1</button>
+<button class="num" onclick="press('2')">2</button>
+<button class="num" onclick="press('3')">3</button>
+<button class="op" onclick="press('+')">+</button>
+</div>
+
+<div>
+<button class="num" onclick="press('4')">4</button>
+<button class="num" onclick="press('5')">5</button>
+<button class="num" onclick="press('6')">6</button>
+<button class="op" onclick="press('-')">-</button>
+</div>
+
+<div>
+<button class="num" onclick="press('7')">7</button>
+<button class="num" onclick="press('8')">8</button>
+<button class="num" onclick="press('9')">9</button>
+<button class="op" onclick="press('*')">*</button>
+</div>
+
+<div>
+<button class="num" onclick="press('0')">0</button>
+<button class="op" onclick="clearScreen()">C</button>
+<button class="op" onclick="calculate()">=</button>
+<button class="op" onclick="press('/')">/</button>
+</div>
+
+</div>
+
+
+<script>
+
+let display=document.getElementById("display");
+
+
+function press(value){
+    display.value += value;
+}
+
+
+function clearScreen(){
+    display.value="";
+}
+
+
+function calculate(){
+    display.value = eval(display.value);
+}
+
+</script>
+
+</body>
+</html>

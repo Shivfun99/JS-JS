@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wordle</title>
+<style>
+body{font-family:Arial;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(5,60px);gap:5px;justify-content:center;margin:30px}
+.box{height:60px;border:2px solid #999;font-size:35px;font-weight:bold;text-transform:uppercase}
+input{font-size:20px;padding:8px;width:150px}
+button{padding:10px 20px;font-size:18px}
+.green{background:#6aaa64;color:white}
+.yellow{background:#c9b458;color:white}
+.gray{background:#787c7e;color:white}
+</style>
+</head>
+<body>
+
+<h1>Wordle</h1>
+<div class="grid" id="grid"></div>
+<input id="inp" maxlength="5">
+<button onclick="check()">Enter</button>
+<h2 id="msg"></h2>
+
+<script>
+let word="apple",tryy=0,max=6;
+let grid=document.getElementById("grid");
+let inp=document.getElementById("inp");
+
+for(let i=0;i<30;i++){
+let d=document.createElement("div");
+d.className="box";
+grid.appendChild(d);
+}
+
+function check(){
+let s=inp.value.toLowerCase();
+if(s.length!=5)return;
+
+let row=tryy*5;
+let boxes=document.querySelectorAll(".box");
+
+for(let i=0;i<5;i++){
+boxes[row+i].innerText=s[i];
+if(s[i]==word[i])boxes[row+i].classList.add("green");
+else if(word.includes(s[i]))boxes[row+i].classList.add("yellow");
+else boxes[row+i].classList.add("gray");
+}
+
+tryy++;
+inp.value="";
+
+if(s==word){
+msg.innerText="You won!";
+inp.disabled=true;
+}
+else if(tryy==max){
+msg.innerText="Word was "+word;
+inp.disabled=true;
+}
+}
+</script>
+
+</body>
+</html>
